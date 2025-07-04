@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VKFlix 18 - Streaming Movies & TV Shows</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .movie-card:hover {
+            transform: scale(1.03);
+            transition: all 0.3s ease;
+        }
+        .category-tag {
+            transition: all 0.2s ease;
+        }
+        .category-tag:hover {
+            background-color: #2592eb;
+            color: white;
+        }
+        .search-container:focus-within {
+            box-shadow: 0 0 0 2px rgba(37, 67, 235, 0.5);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-800 shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d9a90115-116d-4c76-b26d-2b53675273ac.png" alt="VKFlix18 logo - film reel with blue gradient background" class="w-10 h-10 rounded">
+                <span class="text-xl font-bold text-blue-400">VKFlix 18</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-blue-400 transition">Home</a>
+                <a href="#" class="hover:text-blue-400 transition">Movies</a>
+                <a href="#" class="hover:text-blue-400 transition">TV Shows</a>
+                <a href="#" class="hover:text-blue-400 transition">Genre</a>
+                <a href="#" class="hover:text-blue-400 transition">Request</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative search-container">
+                    <input type="text" placeholder="Search movies..." class="bg-gray-700 px-4 py-2 rounded-full text-sm focus:outline-none w-40 md:w-64">
+                    <button class="absolute right-3 top-2 text-gray-400 hover:text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+                </div>
+                <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm font-medium transition">Login</button>
+            </div>
+            <button class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <div class="relative">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8f999d69-0086-4c7a-8bf2-1bfea5db7cc9.png" alt="Featured movie banner - Avengers Endgame superhero team standing ready for battle" class="w-full h-64 md:h-96 object-cover">
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent h-40"></div>
+        <div class="absolute bottom-10 left-10 right-10">
+            <h1 class="text-2xl md:text-4xl font-bold mb-2">Avengers: Endgame</h1>
+            <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">Action</span>
+                <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">Adventure</span>
+                <span class="bg-gray-700 px-3 py-1 rounded-full text-xs">Sci-Fi</span>
+            </div>
+            <p class="text-sm md:text-base text-gray-300 max-w-2xl line-clamp-2">After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.</p>
+            <div class="mt-4 flex space-x-4">
+                <button class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded font-medium transition flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Watch Now
+                </button>
+                <button class="bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded font-medium transition flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Details
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Categories Section -->
+        <section class="mb-10">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl md:text-2xl font-bold">Browse by Category</h2>
+                <a href="#" class="text-blue-400 text-sm hover:underline">View All</a>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+                <a href="#" class="category-tag bg-gray-800 hover:bg-gray-700 rounded-lg p-4 text-center">
+                    <div class="flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h18M3 16h18" />
+                        </svg>
+                        <span class="text-sm">Movies</span>
+                    </div>
+                </a>
+                <a href="#" class="category-tag bg-gray-800 hover:bg-gray-700 rounded-lg p-4 text-center">
+                    <div class="flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span class="text-sm">TV Shows</span>
+                    </div>
+                </a>
+                <a href="#" class="category-tag bg-gray-800 hover:bg-gray-700 rounded-lg p-4 text-center">
+                    <div class="flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        <span class="text-sm">Action</span>
+                    </div>
+                </a>
+                <a href="#" class="category-tag bg-gray-800 hover:bg-gray-700 rounded-lg p-4 text-center">
+                    <div class="flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="text-sm">Comedy</span>
+                    </div>
+                </a>
+                <a href="#" class="category-tag bg-gray-800 hover:bg-gray-700 rounded-lg p-4 text-center">
+                    <div class="flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                        <span class="text-sm">Horror</span>
+                    </div>
+                </a>
+                <a href="#" class="category-tag bg-gray-800 hover:bg-gray-700 rounded-lg p-4 text-center">
+                    <div class="flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                        <span class="text-sm">Thriller</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Latest Releases Section -->
+        <section class="mb-10">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl md:text-2xl font-bold">Latest Releases</h2>
+                <a href="#" class="text-blue-400 text-sm hover:underline">View All</a>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <!-- Movie Card 1 -->
+                <div class="movie-card bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/62c35aec-4ab5-4ccb-9723-ed34d9971004.png" alt="Dune movie poster - Desert planet with futuristic city silhouette" class="w-full h-auto">
+                        <div class="absolute top-2 left-2 bg-yellow-500 text-black px-2 py-1 rounded text-xs font-bold">HD</div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent h-16"></div>
+                        <div class="absolute bottom-2 right-2 flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <span class="text-xs">8.4</span>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-medium text-sm mb-1 truncate">Dune: Part Two</h3>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>2024</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Movie Card 2 -->
+                <div class="movie-card bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2b448cc5-6309-4157-a5e1-07e8053577a8.png" alt="The Batman movie poster - Dark silhouette of Batman against Gotham city skyline" class="w-full h-auto">
+                        <div class="absolute top-2 left-2 bg-green-500 text-black px-2 py-1 rounded text-xs font-bold">4K</div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent h-16"></div>
+                        <div class="absolute bottom-2 right-2 flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <span class="text-xs">7.9</span>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-medium text-sm mb-1 truncate">The Batman</h3>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>2022</span>
+                            <span>Crime</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Movie Card 3 -->
+                <div class="movie-card bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7affbff9-2ea4-4ce9-b5ce-27dad6a8e611.png" alt="Top Gun Maverick movie poster - Fighter jet flying through mountainous terrain" class="w-full h-auto">
+                        <div class="absolute top-2 left-2 bg-blue-500 text-white px-2 py-1 rounded text-xs font-bold">WEB-DL</div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent h-16"></div>
+                        <div class="absolute bottom-2 right-2 flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <span class="text-xs">8.3</span>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-medium text-sm mb-1 truncate">Top Gun: Maverick</h3>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>2022</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Movie Card 4 -->
+                <div class="movie-card bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/517af23d-8f0c-413e-95d9-d034f3202597.png" alt="Spider-Man No Way Home movie poster - Three Spider-Man variants swinging through New York" class="w-full h-auto">
+                        <div class="absolute top-2 left-2 bg-yellow-500 text-black px-2 py-1 rounded text-xs font-bold">HD</div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent h-16"></div>
+                        <div class="absolute bottom-2 right-2 flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <span class="text-xs">8.2</span>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-medium text-sm mb-1 truncate">Spider-Man: No Way Home</h3>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>2021</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Movie Card 5 -->
+                <div class="movie-card bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d5f7a998-44f2-4d0f-bde7-c0a0adda5f54.png" alt="Interstellar movie poster - Astronaut floating near Saturn's rings" class="w-full h-auto">
+                        <div class="absolute top-2 left-2 bg-green-500 text-black px-2 py-1 rounded text-xs font-bold">4K</div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent h-16"></div>
+                        <div class="absolute bottom-2 right-2 flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <span class="text-xs">8.6</span>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-medium text-sm mb-1 truncate">Interstellar</h3>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>2014</span>
+                            <span>Sci-Fi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular TV Shows Section -->
+        <section class="mb-10">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl md:text-2xl font-bold">Popular TV Shows</h2>
+                <a href="#" class="text-blue-400 text-sm hover:underline">View All</a>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <!-- TV Show Card 1 -->
+                <div class="movie-card bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b0fa7590-a62e-4ea3-95b5-70b9981ddf10.png" alt="Breaking Bad TV show poster - Walter White and Jesse Pinkman standing in desert with chemical tanks" class="w-full h-auto">
+                        <div class="absolute top-2 left-2 bg-yellow-500 text-black px-2 py-1 rounded text-xs font-bold">HD</div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent h-16"></div>
+                        <div class="absolute bottom-2 right-2 flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <span class="text-xs">9.5</span>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-medium text-sm mb-1 truncate">Breaking Bad</h3>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>2008-2013</span>
+                            <span>Drama</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TV Show Card 2 -->
+                <div class="movie-card bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1267b50c-b6c2-4987-97df-f107751d3692.png" alt="Stranger Things TV show poster - Kids on bikes facing mysterious glowing portal" class="w-full h-auto">
+                        <div class="absolute top-2 left-2 bg-green-500 text-black px-2 py-1 rounded text-xs font-bold">4K</div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent h-16"></div>
+                        <div class="absolute bottom-2 right-2 flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <span class="text-xs">8.7</span>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-medium text-sm mb-1 truncate">Stranger Things</h3>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>2016-2024</span>
+                            <span>Horror</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TV Show Card 3 -->
+                <div class="movie-card bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1af98974-2bb9-4ae7-a810-8dac51ab90a4.png" alt="Game of Thrones TV show poster - Iron throne surrounded by fog with dragons flying above" class="w-full h-auto">
+                        <div class="absolute top-2 left-2 bg-blue-500 text-white px-2 py-1 rounded text-xs font-bold">WEB-DL</div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent h-16"></div>
+                        <div class="absolute bottom-2 right-2 flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <span class="text-xs">9.2</span>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-medium text-sm mb-1 truncate">Game of Thrones</h3>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>2011-2019</span>
+                            <span>Fantasy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TV Show Card 4 -->
+                <div class="movie-card bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/69006335-1d1f-403e-b9dd-1ff4745fd5e7.png" alt="The Last of Us TV show poster - Joel and Ellie walking through post-apocalyptic city ruins" class="w-full h-auto">
+                        <div class="absolute top-2 left-2 bg-yellow-500 text-black px-2 py-1 rounded text-xs font-bold">HD</div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent h-16"></div>
+                        <div class="absolute bottom-2 right-2 flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <span class="text-xs">8.9</span>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-medium text-sm mb-1 truncate">The Last of Us</h3>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>2023</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TV Show Card 5 -->
+                <div class="movie-card bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2bbe35c1-c666-47a1-bcaf-80e322aa1893.png" alt="The Witcher TV show poster - Geralt of Rivia with silver sword standing in snowy landscape" class="w-full h-auto">
+                        <div class="absolute top-2 left-2 bg-green-500 text-black px-2 py-1 rounded text-xs font-bold">4K</div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent h-16"></div>
+                        <div class="absolute bottom-2 right-2 flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <span class="text-xs">8.2</span>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-medium text-sm mb-1 truncate">The Witcher</h3>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>2019</span>
+                            <span>Fantasy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="bg-gray-800 rounded-lg p-6 mb-10">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-xl font-bold mb-2">Stay Updated</h2>
+                    <p class="text-gray-300 max-w-lg">Subscribe to our newsletter to receive the latest movie releases, TV show updates, and exclusive offers directly to your inbox.</p>
+                </div>
+                <div class="flex w-full md:w-auto">
+                    <input type="email" placeholder="Your email address" class="bg-gray-700 px-4 py-3 rounded-l-lg focus:outline-none w-full md:w-64">
+                    <button class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-r-lg font-medium transition">Subscribe</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-8 border-t border-gray-700">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fc009a80-1b6a-4001-943f-f2785fc4614e.png" alt="CineFlix logo small - film reel icon" class="w-8 h-8 rounded">
+                        <span class="text-lg font-bold text-blue-400">VKFlix18</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Your ultimate destination for streaming movies and TV shows in high quality.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition text-sm">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition text-sm">Movies</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition text-sm">TV Shows</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition text-sm">Request</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Genres</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition text-sm">Action</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition text-sm">Comedy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition text-sm">Horror</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition text-sm">Sci-Fi</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition text-sm">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition text-sm">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition text-sm">DMCA</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition text-sm">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
+                <p>© 2023 Irreplaceablevk. All rights reserved.</p>
+                <p class="mt-2">Disclaimer: We do not host any files. All contents are provided by non-affiliated third parties.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dynamic loading effect for movie cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const movieCards = document.querySelectorAll('.movie-card');
+            
+            movieCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                setTimeout(() => {
+                    card.classList.add('fade-in');
+                    card.style.opacity = '1';
+                }, index * 100);
+            });
+
+            // Search functionality (simulated)
+            const searchInput = document.querySelector('input[type="text"]');
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    alert('Search functionality would be implemented here!');
+                }
+            });
+
+            // Login button click
+            const loginButton = document.querySelector('nav button.bg-blue-600');
+            loginButton.addEventListener('click', function() {
+                alert('Login/Signup modal would appear here!');
+            });
+        });
+    </script>
+</body>
+</html>
+
